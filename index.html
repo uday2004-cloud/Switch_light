@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Switch_light</title>
+
+    <style>
+        body {
+            background: black;
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+            margin: 0;
+            padding-top: 30px;
+            box-sizing: border-box;
+            overflow: hidden;
+            position: relative;
+            isolation: isolate;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 200vmax;
+            height: 200vmax;
+            top: 300px;
+            left: 50%;
+            border-radius: 50%;
+            background: radial-gradient(
+                circle,
+                rgba(255, 255, 190, 0.95) 0%,
+                rgba(255, 220, 100, 0.7) 12%,
+                rgba(255, 190, 50, 0.3) 30%,
+                rgba(255, 160, 20, 0.08) 50%,
+                transparent 70%
+            );
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 2.5s ease-out;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        body.light-on::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        h1 {
+            color: white;
+        }
+
+        img {
+            display: block;
+            margin: 40px auto;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body id="page">
+
+    <h1>Switch_light (ON/OFF)</h1>
+
+    <img id="bulb"
+         src='/Users/uday/pract/Photorealistic Ceiling Light Fixture-3.png'
+         height="300">
+
+    <button onclick="
+        if (bulb.src.includes('Photorealistic')) {
+            bulb.src = '/Users/uday/pract/Glowing Incandescent Light Bulb Fixture-2.png';
+            page.classList.add('light-on');
+        } else {
+            bulb.src = '/Users/uday/pract/Photorealistic Ceiling Light Fixture-3.png';
+            page.classList.remove('light-on');
+        }
+    ">
+        ON / OFF
+    </button>
+
+</body>
+</html>
